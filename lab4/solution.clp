@@ -31,8 +31,6 @@
 
 (deftemplate printed-top-alternatives)
 
-(deftemplate printed-other-options)
-
 (deffacts knowledge-base
    (start)
 
@@ -330,25 +328,6 @@
    (declare (salience -40))
    (recommendation (hobby ?best))
    (score (hobby ?hobby&~?best) (value ?value&:(>= ?value 7)))
-   (hobby
-      (name ?hobby)
-      (description ?description))
-   =>
-   (printout t "- " ?hobby " (score " ?value "): " ?description "." crlf))
-
-(defrule print-other-options-header
-   (declare (salience -50))
-   (recommendation)
-   (not (printed-other-options))
-   =>
-   (printout t crlf)
-   (printout t "Other possible options:" crlf)
-   (assert (printed-other-options)))
-
-(defrule print-other-option
-   (declare (salience -60))
-   (recommendation (hobby ?best))
-   (score (hobby ?hobby&~?best) (value ?value&:(< ?value 7)))
    (hobby
       (name ?hobby)
       (description ?description))
