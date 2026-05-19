@@ -33,6 +33,7 @@ CLIPS.
 - совпадение места занятий: +2.
 
 Рекомендуется хобби с максимальной эвристической оценкой.
+После основной рекомендации система также выводит близкие альтернативы и остальные возможные варианты.
 
 Файл с программой: solution.clp
 
@@ -61,6 +62,18 @@ Matched criteria:
 - budget: +2
 - activity: +3
 
+Also consider these close options:
+- reading (score 9): universal hobby with flexible time and low expenses.
+- chess (score 7): calm intellectual hobby for playing with other people.
+- blogging (score 9): creative home hobby for writing and sharing ideas.
+- programming (score 9): quiet home hobby for logic and problem solving.
+
+Other possible options:
+- yoga (score 6): calm physical hobby that can be practiced at home.
+- cooking (score 6): practical creative hobby for home.
+- hiking (score 2): active outdoor hobby for independent walks and short trips.
+...
+
 Пример ввода 2:
 Activity level (low/medium/high): high
 Budget (low/medium/high): medium
@@ -81,6 +94,16 @@ Matched criteria:
 - budget: +2
 - activity: +3
 
+Also consider these close options:
+- dancing (score 7): active social hobby with creative expression.
+- home_workout (score 7): active hobby for training at home.
+- running (score 9): active outdoor hobby with simple equipment.
+
+Other possible options:
+- reading (score 4): universal hobby with flexible time and low expenses.
+- volunteering (score 4): social hobby with useful activity.
+...
+
 Пример ввода 3:
 Activity level (low/medium/high): low
 Budget (low/medium/high): medium
@@ -100,6 +123,17 @@ Matched criteria:
 - social: +2
 - budget: +2
 - activity: +3
+
+Also consider these close options:
+- reading (score 7): universal hobby with flexible time and low expenses.
+- chess (score 9): calm intellectual hobby for playing with other people.
+- programming (score 7): quiet home hobby for logic and problem solving.
+- blogging (score 7): creative home hobby for writing and sharing ideas.
+
+Other possible options:
+- drawing (score 7): calm creative hobby for home practice.
+- yoga (score 4): calm physical hobby that can be practiced at home.
+...
 
 Для проверки другого варианта нужно снова выполнить:
 (reset)
