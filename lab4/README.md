@@ -17,6 +17,13 @@ CLIPS.
 
 Экспертная система задает пользователю вопросы и анализирует предпочтения: уровень активности, бюджет, желание заниматься одному или в компании, интерес к творчеству и место занятий. На основе этих признаков система рекомендует подходящее хобби.
 
+База знаний содержит:
+
+- факты с описанием хобби, примерами занятий и первым шагом;
+- продукционные правила, которые выбирают рекомендацию по предпочтениям пользователя.
+
+Это продукционная экспертная система на правилах, а не задача эвристического поиска в графе.
+
 Файл с программой: solution.clp
 
 Запуск:
@@ -33,7 +40,10 @@ Place (home/outside): home
 
 Результат:
 Recommended hobby: drawing
-Reason: creative hobby at home with low expenses.
+Reason: you prefer a calm creative activity at home with a low budget.
+Details: calm creative hobby for home practice.
+Examples: pencil sketches, watercolor cards, digital drawing.
+First step: draw one simple object for 15 minutes.
 
 Пример ввода 2:
 Activity level (low/medium/high): high
@@ -44,7 +54,10 @@ Place (home/outside): outside
 
 Результат:
 Recommended hobby: hiking
-Reason: active outdoor hobby suitable for independent walks and small trips.
+Reason: you prefer active outdoor activity that can be done independently.
+Details: active outdoor hobby for independent walks and short trips.
+Examples: city walking routes, weekend forest walks, photo walks.
+First step: choose a safe one hour route near home.
 
 Пример ввода 3:
 Activity level (low/medium/high): low
@@ -55,7 +68,10 @@ Place (home/outside): home
 
 Результат:
 Recommended hobby: board_games
-Reason: calm hobby for spending time with other people.
+Reason: you prefer a calm home activity with other people.
+Details: calm social hobby for small groups.
+Examples: Carcassonne, Ticket to Ride, Codenames.
+First step: invite friends and choose one simple game.
 
 Для проверки другого варианта нужно снова выполнить:
 (reset)

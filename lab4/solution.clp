@@ -5,15 +5,113 @@
    (slot creativity)
    (slot place))
 
+(deftemplate hobby-info
+   (slot name)
+   (slot description)
+   (slot examples)
+   (slot first-step))
+
 (deftemplate recommendation
    (slot hobby)
    (slot reason))
 
-(deffacts start-data
-   (start))
+(deffacts knowledge-base
+   (start)
+
+   (hobby-info
+      (name drawing)
+      (description "calm creative hobby for home practice")
+      (examples "pencil sketches, watercolor cards, digital drawing")
+      (first-step "draw one simple object for 15 minutes"))
+
+   (hobby-info
+      (name running)
+      (description "active outdoor hobby with simple equipment")
+      (examples "park jogging, interval running, preparing for a 5 km run")
+      (first-step "try a 20 minute walk and run session"))
+
+   (hobby-info
+      (name hiking)
+      (description "active outdoor hobby for independent walks and short trips")
+      (examples "city walking routes, weekend forest walks, photo walks")
+      (first-step "choose a safe one hour route near home"))
+
+   (hobby-info
+      (name home_workout)
+      (description "active hobby for training at home")
+      (examples "bodyweight exercises, stretching, dumbbell training")
+      (first-step "make a 15 minute beginner workout plan"))
+
+   (hobby-info
+      (name board_games)
+      (description "calm social hobby for small groups")
+      (examples "Carcassonne, Ticket to Ride, Codenames")
+      (first-step "invite friends and choose one simple game"))
+
+   (hobby-info
+      (name volunteering)
+      (description "social hobby with useful activity")
+      (examples "event help, charity projects, city clean-up activities")
+      (first-step "find one local volunteer event"))
+
+   (hobby-info
+      (name photography)
+      (description "creative hobby for walks and observation")
+      (examples "street photography, nature photography, portrait practice")
+      (first-step "take 10 photos on one topic"))
+
+   (hobby-info
+      (name blogging)
+      (description "creative home hobby for writing and sharing ideas")
+      (examples "study notes, personal diary, reviews")
+      (first-step "write a short post about one interesting topic"))
+
+   (hobby-info
+      (name programming)
+      (description "quiet home hobby for logic and problem solving")
+      (examples "small scripts, web pages, puzzle solving")
+      (first-step "make one small program for a daily task"))
+
+   (hobby-info
+      (name chess)
+      (description "calm intellectual hobby for playing with other people")
+      (examples "online chess, chess puzzles, friendly matches")
+      (first-step "solve five beginner chess puzzles"))
+
+   (hobby-info
+      (name dancing)
+      (description "active social hobby with creative expression")
+      (examples "social dancing, modern dance, dance classes")
+      (first-step "learn one short beginner combination"))
+
+   (hobby-info
+      (name music)
+      (description "creative hobby for home practice and self-expression")
+      (examples "guitar, keyboard, vocal practice")
+      (first-step "learn one simple song or exercise"))
+
+   (hobby-info
+      (name cooking)
+      (description "practical creative hobby for home")
+      (examples "simple baking, soups, quick dinners")
+      (first-step "cook one new simple recipe"))
+
+   (hobby-info
+      (name yoga)
+      (description "calm physical hobby that can be practiced at home")
+      (examples "morning stretching, breathing exercises, beginner yoga")
+      (first-step "try a 10 minute beginner session"))
+
+   (hobby-info
+      (name reading)
+      (description "universal hobby with flexible time and low expenses")
+      (examples "short stories, popular science, fiction")
+      (first-step "choose one short book or article")))
 
 (defrule ask-preferences
+   (declare (salience 100))
    (start)
+   (not (user))
    =>
    (printout t "Activity level (low/medium/high): ")
    (bind ?activity (read))
@@ -33,7 +131,7 @@
          (creativity ?creativity)
          (place ?place))))
 
-(defrule drawing
+(defrule recommend-drawing
    (declare (salience 30))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -45,9 +143,9 @@
    (assert
       (recommendation
          (hobby drawing)
-         (reason "creative hobby at home with low expenses"))))
+         (reason "you prefer a calm creative activity at home with a low budget"))))
 
-(defrule running
+(defrule recommend-running
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -58,9 +156,9 @@
    (assert
       (recommendation
          (hobby running)
-         (reason "active outdoor hobby without expensive equipment"))))
+         (reason "you want a high activity level outside without expensive equipment"))))
 
-(defrule hiking
+(defrule recommend-hiking
    (declare (salience 30))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -72,9 +170,9 @@
    (assert
       (recommendation
          (hobby hiking)
-         (reason "active outdoor hobby suitable for independent walks and small trips"))))
+         (reason "you prefer active outdoor activity that can be done independently"))))
 
-(defrule gym
+(defrule recommend-home-workout
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -85,9 +183,9 @@
    (assert
       (recommendation
          (hobby home_workout)
-         (reason "active hobby for training at home with simple equipment"))))
+         (reason "you want high physical activity but prefer staying at home"))))
 
-(defrule board_games
+(defrule recommend-board-games
    (declare (salience 30))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -98,9 +196,9 @@
    (assert
       (recommendation
          (hobby board_games)
-         (reason "calm hobby for spending time with other people"))))
+         (reason "you prefer a calm home activity with other people"))))
 
-(defrule volunteering
+(defrule recommend-volunteering
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -111,9 +209,9 @@
    (assert
       (recommendation
          (hobby volunteering)
-         (reason "social hobby for useful activity with other people"))))
+         (reason "you prefer useful outdoor activity with a group"))))
 
-(defrule photography
+(defrule recommend-photography
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -125,9 +223,9 @@
    (assert
       (recommendation
          (hobby photography)
-         (reason "creative hobby for walks and observation"))))
+         (reason "you combine creativity, walking, and a medium budget"))))
 
-(defrule blogging
+(defrule recommend-blogging
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -139,9 +237,9 @@
    (assert
       (recommendation
          (hobby blogging)
-         (reason "creative home hobby for writing and sharing ideas"))))
+         (reason "you prefer a calm individual creative activity at home"))))
 
-(defrule programming
+(defrule recommend-programming
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -153,9 +251,9 @@
    (assert
       (recommendation
          (hobby programming)
-         (reason "quiet home hobby for logic and problem solving"))))
+         (reason "you prefer an individual home activity based on logic"))))
 
-(defrule chess
+(defrule recommend-chess
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -167,9 +265,9 @@
    (assert
       (recommendation
          (hobby chess)
-         (reason "calm intellectual hobby for playing with other people"))))
+         (reason "you prefer a calm intellectual activity with other people"))))
 
-(defrule dancing
+(defrule recommend-dancing
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -180,9 +278,9 @@
    (assert
       (recommendation
          (hobby dancing)
-         (reason "active and social hobby with creative expression"))))
+         (reason "you combine high activity, creativity, and social format"))))
 
-(defrule music
+(defrule recommend-music
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -193,9 +291,9 @@
    (assert
       (recommendation
          (hobby music)
-         (reason "creative hobby for home practice and self-expression"))))
+         (reason "you want a creative home hobby and have a medium budget"))))
 
-(defrule cooking
+(defrule recommend-cooking
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -206,9 +304,9 @@
    (assert
       (recommendation
          (hobby cooking)
-         (reason "practical creative hobby for home"))))
+         (reason "you prefer a practical creative activity at home"))))
 
-(defrule yoga
+(defrule recommend-yoga
    (declare (salience 20))
    (not (recommendation (hobby ?hobby)))
    (user
@@ -220,9 +318,9 @@
    (assert
       (recommendation
          (hobby yoga)
-         (reason "calm physical hobby that can be practiced at home"))))
+         (reason "you want moderate activity alone at home with a low budget"))))
 
-(defrule default_hobby
+(defrule recommend-reading
    (declare (salience 0))
    (user)
    (not (recommendation (hobby ?hobby)))
@@ -230,13 +328,22 @@
    (assert
       (recommendation
          (hobby reading)
-         (reason "universal hobby with flexible time and low expenses"))))
+         (reason "no narrow rule was selected, so the system chooses a universal flexible hobby"))))
 
-(defrule print_recommendation
+(defrule print-recommendation
    (declare (salience -10))
    (recommendation
       (hobby ?hobby)
       (reason ?reason))
+   (hobby-info
+      (name ?hobby)
+      (description ?description)
+      (examples ?examples)
+      (first-step ?step))
    =>
+   (printout t crlf)
    (printout t "Recommended hobby: " ?hobby crlf)
-   (printout t "Reason: " ?reason "." crlf))
+   (printout t "Reason: " ?reason "." crlf)
+   (printout t "Details: " ?description "." crlf)
+   (printout t "Examples: " ?examples "." crlf)
+   (printout t "First step: " ?step "." crlf))
